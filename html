@@ -33,10 +33,45 @@ puts 'tbody th { background-color: #ecf0f1; font-weight: bold; }'
 puts 'tbody tr:hover td { background-color: #e8f4f8; }'
 puts 'tr.width-group-end { border-bottom: 3px solid #95a5a6; }'
 puts 'tr.width-group-end td, tr.width-group-end th { padding-bottom: 14px; }'
+puts 'h2 { color: #333; margin-top: 40px; margin-bottom: 15px; }'
+puts '.length-table { max-width: 600px; margin-bottom: 40px; }'
+puts '.length-table td { text-align: right; padding: 8px 12px; }'
+puts '.length-table th { text-align: center; }'
 puts '</style>'
 puts '</head>'
 puts '<body>'
 puts '<h1>Nicks Handmade Boots Fitting Chart</h1>'
+
+puts '<h2>Foot Length</h2>'
+puts '<table class="length-table">'
+puts '<thead>'
+puts '<tr>'
+puts '<th rowspan=2>Nicks<br>Size</th>'
+puts '<th colspan=2>Inches</th>'
+puts '<th colspan=2>Millimeters</th>'
+puts '</tr>'
+puts '<tr>'
+puts '<th>Min</th>'
+puts '<th>Max</th>'
+puts '<th>Min</th>'
+puts '<th>Max</th>'
+puts '</tr>'
+puts '</thead>'
+puts '<tbody>'
+$sizes.each do |size|
+  data = $length_data[size]
+  puts '<tr>'
+  puts "<th>#{fractions(size)}</th>"
+  puts "<td>#{data[:min_inches]}</td>"
+  puts "<td>#{data[:max_inches]}</td>"
+  puts "<td>#{data[:min_mm]}</td>"
+  puts "<td>#{data[:max_mm]}</td>"
+  puts '</tr>'
+end
+puts '</tbody>'
+puts '</table>'
+
+puts '<h2>Width Measurements</h2>'
 puts '<table>'
 
 puts '<thead>'
