@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$widths = %w[A B C D E EE F FF FFF]
+$widths = %w[A B C D E EE F FF FFF FFFF]
 
 $sizes = (4..15).step(0.5).map do |size|
   size.to_s.sub('.0', '').sub('.5', ' 1/2')
@@ -38,6 +38,6 @@ $sizes.each_with_index do |size, size_index|
       add(instep, 1)
       add(heel, 1)
     end
-    $data[size][width] = { ball:, instep:, heel: }
+    $data[size][width] = { ball: ball, instep: instep, heel: heel }
   end
 end

@@ -15,6 +15,23 @@ def fractions(string)
     .sub(' 7/8', '⅞')
 end
 
+puts '<!DOCTYPE html>'
+puts '<html lang="en">'
+puts '<head>'
+puts '<meta charset="UTF-8">'
+puts '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+puts '<title>Nicks Boots Fitting Chart</title>'
+puts '<style>'
+puts 'body { font-family: Arial, sans-serif; margin: 20px; }'
+puts 'table { border-collapse: collapse; }'
+puts 'th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }'
+puts 'th { background-color: #f2f2f2; font-weight: bold; }'
+puts 'tfoot th { background-color: #f2f2f2; }'
+puts 'tr:hover { background-color: #f5f5f5; }'
+puts '</style>'
+puts '</head>'
+puts '<body>'
+puts '<h1>Nicks Handmade Boots Fitting Chart</h1>'
 puts '<table>'
 
 puts '<thead>'
@@ -27,6 +44,14 @@ puts '<tr>'
 $sizes.each { |size| print "<th>#{fractions(size)}</th>" }
 puts '</tr>'
 puts '</thead>'
+
+puts '<tfoot>'
+puts '<tr>'
+puts '<th>Width</th>'
+puts '<th>Measure</th>'
+$sizes.each { |size| print "<th>#{fractions(size)}</th>" }
+puts '</tr>'
+puts '</tfoot>'
 
 puts '<tbody>'
 $widths.each do |width|
@@ -43,3 +68,5 @@ end
 puts '</tbody>'
 
 puts '</table>'
+puts '</body>'
+puts '</html>'
