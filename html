@@ -22,12 +22,17 @@ puts '<meta charset="UTF-8">'
 puts '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
 puts '<title>Nicks Boots Fitting Chart</title>'
 puts '<style>'
-puts 'body { font-family: Arial, sans-serif; margin: 20px; }'
-puts 'table { border-collapse: collapse; }'
-puts 'th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }'
-puts 'th { background-color: #f2f2f2; font-weight: bold; }'
-puts 'tfoot th { background-color: #f2f2f2; }'
-puts 'tr:hover { background-color: #f5f5f5; }'
+puts 'body { font-family: Arial, sans-serif; margin: 20px; background-color: #fafafa; }'
+puts 'h1 { color: #333; }'
+puts 'table { border-collapse: collapse; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }'
+puts 'th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: center; }'
+puts 'thead th { background-color: #2c3e50; color: white; position: sticky; top: 0; z-index: 10; }'
+puts 'thead tr:first-child th { border-bottom: 2px solid #34495e; }'
+puts 'tfoot th { background-color: #2c3e50; color: white; position: sticky; bottom: 0; z-index: 10; }'
+puts 'tbody th { background-color: #ecf0f1; font-weight: bold; }'
+puts 'tbody tr:hover td { background-color: #e8f4f8; }'
+puts 'tr.width-group-end { border-bottom: 3px solid #95a5a6; }'
+puts 'tr.width-group-end td, tr.width-group-end th { padding-bottom: 14px; }'
 puts '</style>'
 puts '</head>'
 puts '<body>'
@@ -36,11 +41,8 @@ puts '<table>'
 
 puts '<thead>'
 puts '<tr>'
-puts '<th rowspan=2>Width</th>'
-puts '<th rowspan=2>Measure</th>'
-puts "<th colspan=#{$sizes.count}>Size</th>"
-puts '</tr>'
-puts '<tr>'
+puts '<th>Width</th>'
+puts '<th>Measure</th>'
 $sizes.each { |size| print "<th>#{fractions(size)}</th>" }
 puts '</tr>'
 puts '</thead>'
@@ -54,9 +56,11 @@ puts '</tr>'
 puts '</tfoot>'
 
 puts '<tbody>'
-$widths.each do |width|
+$widths.each_with_index do |width, width_index|
   %i[ball instep heel].each_with_index do |measure, measure_index|
-    puts '<tr>'
+    is_last_row = measure_index == 2
+    row_class = (is_last_row && width_index < $widths.count - 1) ? ' class="width-group-end"' : ''
+    puts "<tr#{row_class}>"
     puts "<th rowspan=3>#{width}</th>" if measure_index.zero?
     puts "<th>#{measure.to_s.capitalize}</th>"
     $sizes.each do |size|
